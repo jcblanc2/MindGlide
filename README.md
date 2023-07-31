@@ -4,6 +4,7 @@
 
 ### App Description
 It is a simple Flashcard app that can show a question and answer it when the user touches it. The app is written in Kotlin.
+
 ### App Walk-though
 
 <img src="app.gif" width=200><br>
