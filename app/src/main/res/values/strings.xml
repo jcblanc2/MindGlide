@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MindGlide</string>
+    <string name="question_text">Who is the 44th President of the United States?</string>
 </resources>
