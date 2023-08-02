@@ -22,10 +22,19 @@ class MainActivity : AppCompatActivity() {
 //            tvFlashcardAnswer.visibility = View.VISIBLE
 //        }
 //
-//        // Add an onClickListener to the question textview
-//        tvFlashcardAnswer.setOnClickListener {
-//            tvFlashcardQuestion.visibility = View.VISIBLE
-//            tvFlashcardAnswer.visibility = View.INVISIBLE
-//        }
+        // Add onClickListener to the answers textview
+        tvAnswerClinton.setOnClickListener {
+            tvAnswerClinton.setBackgroundColor(resources.getColor(R.color.red, null))
+            tvAnswerObama.setBackgroundColor(resources.getColor(R.color.green, null))
+        }
+
+        tvAnswerBush.setOnClickListener {
+            tvAnswerBush.setBackgroundColor(resources.getColor(R.color.red, null))
+            tvAnswerObama.setBackgroundColor(resources.getColor(R.color.green, null))
+        }
+
+        tvAnswerObama.setOnClickListener {
+            tvAnswerObama.setBackgroundColor(resources.getColor(R.color.green, null))
+        }
     }
 }
