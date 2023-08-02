@@ -14,10 +14,16 @@ class MainActivity : AppCompatActivity() {
         val tvFlashcardQuestion = findViewById<TextView>(R.id.tvFlashcardQuestion)
         val tvFlashcardAnswer = findViewById<TextView>(R.id.tvFlashcardAnswer)
 
-        // Set an onClickListener for the question text view
+        // Add an onClickListener for the question textview
         tvFlashcardQuestion.setOnClickListener {
             tvFlashcardQuestion.visibility = View.INVISIBLE
             tvFlashcardAnswer.visibility = View.VISIBLE
+        }
+
+        // Add an onClickListener to the question textview
+        tvFlashcardAnswer.setOnClickListener {
+            tvFlashcardQuestion.visibility = View.VISIBLE
+            tvFlashcardAnswer.visibility = View.INVISIBLE
         }
     }
 }
