@@ -10,20 +10,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Look up the question and answer textview and  in layout
+        // Look up the question and answers textview and  in layout
         val tvFlashcardQuestion = findViewById<TextView>(R.id.tvFlashcardQuestion)
-        val tvFlashcardAnswer = findViewById<TextView>(R.id.tvFlashcardAnswer)
+        val tvAnswerClinton = findViewById<TextView>(R.id.tvAnswerClinton)
+        val tvAnswerBush = findViewById<TextView>(R.id.tvAnswerBush)
+        val tvAnswerObama = findViewById<TextView>(R.id.tvAnswerObama)
 
         // Add an onClickListener for the question textview
-        tvFlashcardQuestion.setOnClickListener {
-            tvFlashcardQuestion.visibility = View.INVISIBLE
-            tvFlashcardAnswer.visibility = View.VISIBLE
-        }
-
-        // Add an onClickListener to the question textview
-        tvFlashcardAnswer.setOnClickListener {
-            tvFlashcardQuestion.visibility = View.VISIBLE
-            tvFlashcardAnswer.visibility = View.INVISIBLE
-        }
+//        tvFlashcardQuestion.setOnClickListener {
+//            tvFlashcardQuestion.visibility = View.INVISIBLE
+//            tvFlashcardAnswer.visibility = View.VISIBLE
+//        }
+//
+//        // Add an onClickListener to the question textview
+//        tvFlashcardAnswer.setOnClickListener {
+//            tvFlashcardQuestion.visibility = View.VISIBLE
+//            tvFlashcardAnswer.visibility = View.INVISIBLE
+//        }
     }
 }

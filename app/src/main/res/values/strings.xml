@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MindGlide</string>
     <string name="question_text">Who is the 44th President of the United States?</string>
-    <string name="answer">Barack Obama</string>
+    <string name="answer_obama">Barack Obama</string>
+    <string name="answer_clinton">Bill Clinton</string>
+    <string name="answer_bush">George H. W. Bush</string>
 </resources>
