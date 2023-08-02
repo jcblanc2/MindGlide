@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/tvAnswerClinton"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_below="@id/tvFlashcardQuestion"
         android:gravity="center"
         android:layout_margin="10dp"
@@ -33,7 +33,7 @@
     <TextView
         android:id="@+id/tvAnswerBush"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_below="@id/tvAnswerClinton"
         android:gravity="center"
         android:layout_margin="10dp"
@@ -46,7 +46,7 @@
     <TextView
         android:id="@+id/tvAnswerObama"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_below="@id/tvAnswerBush"
         android:gravity="center"
         android:layout_margin="10dp"
@@ -55,5 +55,15 @@
         android:textSize="40sp"
         android:background="@color/light_orange"
         android:textColor="@color/purple" />
+
+    <ImageView
+        android:id="@+id/toggle_choices_visibility"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/hide_icon_foreground"
+        android:contentDescription="@string/toggle_choices_visibility" />
 
 </RelativeLayout>
