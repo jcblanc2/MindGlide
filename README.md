@@ -1,4 +1,4 @@
-## Flashcard app
+## MindGlide
 
 ## Lab 1
 
