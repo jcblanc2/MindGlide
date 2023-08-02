@@ -7,7 +7,7 @@ It is a simple Flashcard app that can show a question and answer it when the use
 
 ### App Walk-though
 
-<img src="https://imgur.com/gallery/DNo7rGC" width=200><br>
+<img src="https://imgur.com/YJfgTRe" width=200><br>
 
 ## Required
 - [x] Create New Project in Android Studio
