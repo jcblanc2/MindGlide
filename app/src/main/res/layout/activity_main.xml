@@ -35,4 +35,14 @@
         android:layout_alignParentBottom="true"
         android:src="@drawable/add_icon_foreground"
         android:contentDescription="@string/button_add" />
+
+    <ImageView
+        android:id="@+id/ivEditBtn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/edit_icon_foreground"
+        android:contentDescription="@string/edit_button"/>
 </RelativeLayout>

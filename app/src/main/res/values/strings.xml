@@ -2,12 +2,10 @@
     <string name="app_name">MindGlide</string>
     <string name="question_text">Who is the 44th President of the United States?</string>
     <string name="answer_obama">Barack Obama</string>
-    <string name="answer_clinton">Bill Clinton</string>
-    <string name="answer_bush">George H. W. Bush</string>
-    <string name="toggle_choices_visibility">toggle choices visibility</string>
     <string name="button_add">button add</string>
     <string name="cancel_button">cancel button</string>
     <string name="question_hint">Enter The Question Here</string>
     <string name="answer_hint">Enter The Answer Here</string>
     <string name="save_button">Save button</string>
+    <string name="edit_button">Edit Button</string>
 </resources>

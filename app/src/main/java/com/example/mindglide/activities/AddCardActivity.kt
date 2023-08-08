@@ -21,6 +21,10 @@ class AddCardActivity : AppCompatActivity() {
         val cancelBtn = findViewById<ImageView>(R.id.ivCancelBtn)
         val saveBtn = findViewById<ImageView>(R.id.ivSaveBtn)
 
+        // This extracts any data that was passed back from MainActivity
+        etQuestion.setText(intent.getStringExtra("question"))
+        etAnswer.setText(intent.getStringExtra("answer"))
+
         // Add onClickListener to the cancel and save button
         cancelBtn.setOnClickListener{
             finish()

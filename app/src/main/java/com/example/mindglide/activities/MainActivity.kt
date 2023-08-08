@@ -15,10 +15,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Look up the question, answer textview and the add button in layout
+        // Look up the question, answer textview and the add and edit button in layout
         val tvFlashcardQuestion = findViewById<TextView>(R.id.tvFlashcardQuestion)
         val tvFlashcardAnswer = findViewById<TextView>(R.id.tvFlashcardAnswer)
         val addBtn = findViewById<ImageView>(R.id.ivAddBtn)
+        val ivEditBtn = findViewById<ImageView>(R.id.ivEditBtn)
 
         // This extracts any data that was passed back from AddCardActivity
         val addCardActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Add onClickListener to the plus icon and question textview
+        // Add onClickListener to the save, edit button and question textview
         addBtn.setOnClickListener {
             val intent = Intent(this, AddCardActivity::class.java)
             addCardActivityResultLauncher.launch(intent)
@@ -44,6 +45,13 @@ class MainActivity : AppCompatActivity() {
         tvFlashcardQuestion.setOnClickListener {
             tvFlashcardQuestion.visibility = View.INVISIBLE
             tvFlashcardAnswer.visibility = View.VISIBLE
+        }
+
+        ivEditBtn.setOnClickListener {
+            val intent = Intent(this, AddCardActivity::class.java)
+            intent.putExtra("question", tvFlashcardQuestion.text.toString())
+            intent.putExtra("answer", tvFlashcardAnswer.text.toString())
+            addCardActivityResultLauncher.launch(intent)
         }
     }
 }
