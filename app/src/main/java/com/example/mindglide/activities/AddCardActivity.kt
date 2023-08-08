@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import com.example.mindglide.R
 
 class AddCardActivity : AppCompatActivity() {
@@ -39,12 +40,20 @@ class AddCardActivity : AppCompatActivity() {
     private fun onSave() {
         val data = Intent()
 
-        // Pass relevant data back as a result
-        data.putExtra("question", etQuestion.text.toString())
-        data.putExtra("answer", etAnswer.text.toString())
+        val question = etQuestion.text.toString()
+        val answer = etAnswer.text.toString()
 
-        setResult(RESULT_OK, data) // set result code and bundle data for response
+        if (question.isNotEmpty() && answer.isNotEmpty()) {
+            // Pass relevant data back as a result
+            data.putExtra("question", question)
+            data.putExtra("answer", answer)
 
-        finish() // closes the activity, pass data to parent
+            setResult(RESULT_OK, data) // set result code and bundle data for response
+
+            finish() // closes the activity, pass data to parent
+        }
+
+        // show an error message in a Toast
+        Toast.makeText(applicationContext, "Must enter both Question and Answer!", Toast.LENGTH_SHORT).show()
     }
 }
