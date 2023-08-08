@@ -13,11 +13,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Look up plus icon in layout
-        val ivToggleChoicesVisibility = findViewById<ImageView>(R.id.addFloatingBtn)
+        // Look up the plus icon in layout
+        val addFloatingBtn = findViewById<ImageView>(R.id.addFloatingBtn)
 
         // Add onClickListener to the plus icon
-        ivToggleChoicesVisibility.setOnClickListener {
+        addFloatingBtn.setOnClickListener {
             val intent = Intent(this, AddCardActivity::class.java)
             startActivity(intent)
         }
