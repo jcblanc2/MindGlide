@@ -6,7 +6,7 @@
 `TODO://` Add app description
 
 ### App Walk-though
-<img src="https://imgur.com/gallery/Cwh3lAf" width=200><br>
+<img src="https://imgur.com/gallery/Cwh3lAf.gif" width=200><br>
 
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
