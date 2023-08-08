@@ -26,7 +26,7 @@
         android:hint="@string/answer_hint" />
 
     <ImageView
-        android:id="@+id/cancelFloatingBtn"
+        android:id="@+id/ivCancelBtn"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_margin="5dp"
@@ -34,4 +34,14 @@
         android:layout_alignParentBottom="true"
         android:src="@drawable/cancel_icon_foreground"
         android:contentDescription="@string/cancel_button" />
+
+    <ImageView
+        android:id="@+id/ivSaveBtn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/save_icon_foreground"
+        android:contentDescription="@string/save_button" />
 </RelativeLayout>

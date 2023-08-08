@@ -2,8 +2,6 @@
 <resources>
 
     <style name="Theme.MindGlide" parent="Base.Theme.AppCompat.Light.DarkActionBar" >
-<!--        <item name="colorControlNormal">#d32f2f</item>-->
         <item name="colorControlActivated">#ff5722</item>
-<!--        <item name="colorControlHighlight">#f44336</item>-->
     </style>
 </resources>
