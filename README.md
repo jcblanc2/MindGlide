@@ -3,10 +3,10 @@
 ## Lab 2
 
 ### App Description
-`TODO://` Add app description
+This is a simple flashcard app that allows users to add questions and answers, and then display a question and its answer on the screen. The app is written in Kotlin.
 
 ### App Walk-though
-<img src="https://imgur.com/gallery/Cwh3lAf.gif" width=200><br>
+<img src="https://i.imgur.com/Tk7oJSN.gif" width=200><br>
 
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
