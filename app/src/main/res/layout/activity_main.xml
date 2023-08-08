@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:id="@+id/tvFlashcardQuestion"
@@ -12,58 +12,17 @@
         android:gravity="center"
         android:text="@string/question_text"
         android:textSize="40sp"
-        android:background="@drawable/card_question_background"
         android:textColor="@color/blue_gray"
         android:elevation="5dp"
         android:layout_margin="10dp"/>
 
-    <TextView
-        android:id="@+id/tvAnswerClinton"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_below="@id/tvFlashcardQuestion"
-        android:gravity="center"
-        android:layout_margin="10dp"
-        android:elevation="5dp"
-        android:text="@string/answer_clinton"
-        android:textSize="40sp"
-        android:background="@color/light_orange"
-        android:textColor="@color/purple" />
-
-    <TextView
-        android:id="@+id/tvAnswerBush"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_below="@id/tvAnswerClinton"
-        android:gravity="center"
-        android:layout_margin="10dp"
-        android:elevation="5dp"
-        android:text="@string/answer_bush"
-        android:textSize="40sp"
-        android:background="@color/light_orange"
-        android:textColor="@color/purple" />
-
-    <TextView
-        android:id="@+id/tvAnswerObama"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_below="@id/tvAnswerBush"
-        android:gravity="center"
-        android:layout_margin="10dp"
-        android:elevation="5dp"
-        android:text="@string/answer_obama"
-        android:textSize="40sp"
-        android:background="@color/light_orange"
-        android:textColor="@color/purple" />
-
     <ImageView
-        android:id="@+id/toggle_choices_visibility"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="15dp"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/addFloatingBtn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/hide_icon_foreground"
-        android:contentDescription="@string/toggle_choices_visibility" />
-
+        android:src="@drawable/add_icon_foreground"
+        android:contentDescription="@string/button_add" />
 </RelativeLayout>

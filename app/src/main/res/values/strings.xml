@@ -5,4 +5,5 @@
     <string name="answer_clinton">Bill Clinton</string>
     <string name="answer_bush">George H. W. Bush</string>
     <string name="toggle_choices_visibility">toggle choices visibility</string>
+    <string name="button_add">button add</string>
 </resources>
