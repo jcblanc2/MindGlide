@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".activities.AddCardActivity">
 
+    <EditText
+        android:id="@+id/etQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:hint="@string/question_hint" />
+
+    <EditText
+        android:id="@+id/etAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/etQuestion"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/answer_hint" />
+
     <ImageView
         android:id="@+id/cancelFloatingBtn"
         android:layout_width="130dp"

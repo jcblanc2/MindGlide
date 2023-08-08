@@ -7,4 +7,6 @@
     <string name="toggle_choices_visibility">toggle choices visibility</string>
     <string name="button_add">button add</string>
     <string name="cancel_button">cancel button</string>
+    <string name="question_hint">Enter The Question Here</string>
+    <string name="answer_hint">Enter The Answer Here</string>
 </resources>
