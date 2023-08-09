@@ -16,14 +16,34 @@
         android:hint="@string/question_hint" />
 
     <EditText
-        android:id="@+id/etAnswer"
+        android:id="@+id/etAnswer1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_margin="20dp"
         android:layout_below="@id/etQuestion"
         android:ems="10"
         android:inputType="text"
-        android:hint="@string/answer_hint" />
+        android:hint="@string/answer1_hint" />
+
+    <EditText
+        android:id="@+id/etAnswer2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/etAnswer1"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/answer2_hint" />
+
+    <EditText
+        android:id="@+id/etAnswer3"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/etAnswer2"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/answer3_hint" />
 
     <ImageView
         android:id="@+id/ivCancelBtn"

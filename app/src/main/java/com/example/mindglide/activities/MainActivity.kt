@@ -14,34 +14,19 @@ import com.example.mindglide.R
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var tvFlashcardQuestion : TextView
+    private lateinit var tvFlashcardAnswer1 : TextView
+    private lateinit var tvFlashcardAnswer2 : TextView
+    private lateinit var tvFlashcardAnswer3 : TextView
+    private lateinit var addBtn : ImageView
+    private lateinit var ivEditBtn : ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Look up the question, answer textview and the add and edit button in layout
-        val tvFlashcardQuestion = findViewById<TextView>(R.id.tvFlashcardQuestion)
-        val tvFlashcardAnswer = findViewById<TextView>(R.id.tvFlashcardAnswer)
-        val addBtn = findViewById<ImageView>(R.id.ivAddBtn)
-        val ivEditBtn = findViewById<ImageView>(R.id.ivEditBtn)
-
-        // This extracts any data that was passed back from AddCardActivity
-        val addCardActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-
-                if (data != null) {
-                    val question = data.getStringExtra("question")
-                    val answer = data.getStringExtra("answer")
-
-                    tvFlashcardQuestion.text = question
-                    tvFlashcardAnswer.text = answer
-
-                    // Get the root view of the activity
-                    val parentLayout = findViewById<View>(android.R.id.content)
-                    Snackbar.make(parentLayout, R.string.snackbar_text, Snackbar.LENGTH_LONG).show()
-                }
-            }
-        }
+        // Look up the views in layout
+        initializeViews()
 
         // Add onClickListener to the save, edit button and question textview
         addBtn.setOnClickListener {
@@ -49,16 +34,49 @@ class MainActivity : AppCompatActivity() {
             addCardActivityResultLauncher.launch(intent)
         }
 
-        tvFlashcardQuestion.setOnClickListener {
-            tvFlashcardQuestion.visibility = View.INVISIBLE
-            tvFlashcardAnswer.visibility = View.VISIBLE
-        }
-
         ivEditBtn.setOnClickListener {
-            val intent = Intent(this, AddCardActivity::class.java)
-            intent.putExtra("question", tvFlashcardQuestion.text.toString())
-            intent.putExtra("answer", tvFlashcardAnswer.text.toString())
-            addCardActivityResultLauncher.launch(intent)
+            startAddCardActivity()
+        }
+    }
+
+    private fun initializeViews(){
+        tvFlashcardQuestion = findViewById(R.id.tvFlashcardQuestion)
+        tvFlashcardAnswer1 = findViewById(R.id.tvFlashcardAnswer1)
+        tvFlashcardAnswer2 = findViewById(R.id.tvFlashcardAnswer2)
+        tvFlashcardAnswer3 = findViewById(R.id.tvFlashcardAnswer3)
+        addBtn = findViewById(R.id.ivAddBtn)
+        ivEditBtn = findViewById(R.id.ivEditBtn)
+    }
+
+    private fun startAddCardActivity(){
+        val intent = Intent(this, AddCardActivity::class.java)
+        intent.putExtra("question", tvFlashcardQuestion.text.toString())
+        intent.putExtra("answer1", tvFlashcardAnswer1.text.toString())
+        intent.putExtra("answer2", tvFlashcardAnswer2.text.toString())
+        intent.putExtra("answer3", tvFlashcardAnswer3.text.toString())
+        addCardActivityResultLauncher.launch(intent)
+    }
+
+    // This extracts any data that was passed back from AddCardActivity
+    private val addCardActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+
+            if (data != null) {
+                val question = data.extras!!.getString("question")
+                val answer1 = data.extras!!.getString("answer1")
+                val answer2 = data.extras!!.getString("answer2")
+                val answer3 = data.extras!!.getString("answer3")
+
+                tvFlashcardQuestion.text = question
+                tvFlashcardAnswer1.text = answer1
+                tvFlashcardAnswer2.text = answer2
+                tvFlashcardAnswer3.text = answer3
+
+                // Get the root view of the activity
+                val parentLayout = findViewById<View>(android.R.id.content)
+                Snackbar.make(parentLayout, R.string.snackbar_text, Snackbar.LENGTH_LONG).show()
+            }
         }
     }
 }
