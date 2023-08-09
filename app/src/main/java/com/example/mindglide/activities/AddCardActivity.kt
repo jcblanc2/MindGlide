@@ -52,8 +52,13 @@ class AddCardActivity : AppCompatActivity() {
 
             finish() // closes the activity, pass data to parent
         }
-
-        // show an error message in a Toast
-        Toast.makeText(applicationContext, "Must enter both Question and Answer!", Toast.LENGTH_SHORT).show()
+        else {
+            // show an error message in a Toast
+            Toast.makeText(
+                applicationContext,
+                "Must enter both Question and Answer!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }

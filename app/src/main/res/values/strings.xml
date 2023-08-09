@@ -8,4 +8,5 @@
     <string name="answer_hint">Enter The Answer Here</string>
     <string name="save_button">Save button</string>
     <string name="edit_button">Edit Button</string>
+    <string name="snackbar_text">Card successfully created</string>
 </resources>

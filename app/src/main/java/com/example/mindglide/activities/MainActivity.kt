@@ -4,11 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewParent
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.Snackbar
 import com.example.mindglide.R
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,10 @@ class MainActivity : AppCompatActivity() {
 
                     tvFlashcardQuestion.text = question
                     tvFlashcardAnswer.text = answer
+
+                    // Get the root view of the activity
+                    val parentLayout = findViewById<View>(android.R.id.content)
+                    Snackbar.make(parentLayout, R.string.snackbar_text, Snackbar.LENGTH_LONG).show()
                 }
             }
         }
