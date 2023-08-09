@@ -2,6 +2,10 @@
 <resources>
 
     <style name="Theme.MindGlide" parent="Base.Theme.AppCompat.Light.DarkActionBar" >
-        <item name="colorControlActivated">#ff5722</item>
+        <item name="colorPrimary">#485062</item>
+        <item name="colorPrimaryDark">#485062</item>
+        <item name="colorAccent">#FFFFFFFF</item>
+        <item name="colorControlActivated">#343541</item>
+        <item name="colorControlNormal">#485062</item>
     </style>
 </resources>

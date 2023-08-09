@@ -6,7 +6,7 @@
 This is a simple flashcard app that allows users to add questions and answers, and then display a question and its answer on the screen. The app is written in Kotlin.
 
 ### App Walk-though
-<img src="https://i.imgur.com/Tk7oJSN.gif" width=200><br>
+<img src="https://i.imgur.com/lXjMF4G.gif" width=200><br>
 
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
@@ -16,11 +16,11 @@ This is a simple flashcard app that allows users to add questions and answers, a
 - [x] Push your progress to GitHub!
 
 ## Optional
-- [ ] User can edit a card
-- [ ] An error message is shown if the user doesn't enter both a Question and an Answer
-- [ ] A notification is shown if the card was created successfully
-- [ ] User can also enter multiple choice answers when creating a card
-- [ ] App is further styled and customized!
+- [x] User can edit a card
+- [x] An error message is shown if the user doesn't enter both a Question and an Answer
+- [x] A notification is shown if the card was created successfully
+- [x] User can also enter multiple choice answers when creating a card
+- [x] App is further styled and customized!
 
 
 ## Lab 1

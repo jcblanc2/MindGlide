@@ -4,46 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".activities.AddCardActivity">
 
-    <EditText
-        android:id="@+id/etQuestion"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etQuestion_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="20dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:hint="@string/question_hint" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
 
-    <EditText
-        android:id="@+id/etAnswer1"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="20dp"
-        android:layout_below="@id/etQuestion"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/answer1_hint" />
+        <EditText
+            android:id="@+id/etQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:layout_margin="20dp"
+            android:inputType="textMultiLine"
+            android:hint="@string/question_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/etAnswer2"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etAnswer1_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="20dp"
-        android:layout_below="@id/etAnswer1"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/answer2_hint" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etQuestion_text_input_layout">
 
-    <EditText
-        android:id="@+id/etAnswer3"
+        <EditText
+            android:id="@+id/etAnswer1"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:layout_margin="20dp"
+            android:inputType="textMultiLine"
+            android:hint="@string/answer1_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etAnswer2_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="20dp"
-        android:layout_below="@id/etAnswer2"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/answer3_hint" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAnswer1_text_input_layout">
+
+        <EditText
+            android:id="@+id/etAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/answer2_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etAnswer3_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAnswer2_text_input_layout">
+
+        <EditText
+            android:id="@+id/etAnswer3"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/answer3_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/ivCancelBtn"
