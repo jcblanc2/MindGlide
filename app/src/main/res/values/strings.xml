@@ -7,10 +7,11 @@
     <string name="button_add">button add</string>
     <string name="cancel_button">cancel button</string>
     <string name="question_hint">Enter The Question Here</string>
-    <string name="answer1_hint">Enter The Answer Here</string>
+    <string name="answer_hint">Enter The Answer Here</string>
     <string name="answer2_hint">Enter Wrong Answer Option Here</string>
     <string name="answer3_hint">Enter Another Wrong Answer Option Here</string>
     <string name="save_button">Save button</string>
     <string name="edit_button">Edit Button</string>
     <string name="snackbar_text">Card successfully created</string>
+    <string name="button_next">button next</string>
 </resources>

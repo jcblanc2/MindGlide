@@ -10,7 +10,7 @@ import com.example.mindglide.R
 
 class AddCardActivity : AppCompatActivity() {
     private lateinit var etQuestion : EditText
-    private lateinit var etAnswer1 : EditText
+    private lateinit var etAnswer : EditText
     private lateinit var etAnswer2 : EditText
     private lateinit var etAnswer3 : EditText
     private lateinit var cancelBtn : ImageView
@@ -38,18 +38,18 @@ class AddCardActivity : AppCompatActivity() {
 
     private fun initializeViews(){
         etQuestion = findViewById(R.id.etQuestion)
-        etAnswer1 = findViewById(R.id.etAnswer1)
-        etAnswer2 = findViewById(R.id.etAnswer2)
-        etAnswer3 = findViewById(R.id.etAnswer3)
+        etAnswer = findViewById(R.id.etAnswer)
+//        etAnswer2 = findViewById(R.id.etAnswer2)
+//        etAnswer3 = findViewById(R.id.etAnswer3)
         cancelBtn = findViewById(R.id.ivCancelBtn)
         saveBtn = findViewById(R.id.ivSaveBtn)
     }
 
     private fun getData(){
         etQuestion.setText(intent.getStringExtra("question"))
-        etAnswer1.setText(intent.getStringExtra("answer1"))
-        etAnswer2.setText(intent.getStringExtra("answer2"))
-        etAnswer3.setText(intent.getStringExtra("answer3"))
+        etAnswer.setText(intent.getStringExtra("answer"))
+//        etAnswer2.setText(intent.getStringExtra("answer2"))
+//        etAnswer3.setText(intent.getStringExtra("answer3"))
     }
 
     // closes AddCardActivity and returns to MainActivity and put our data
@@ -57,16 +57,16 @@ class AddCardActivity : AppCompatActivity() {
         val data = Intent()
 
         val question = etQuestion.text.toString()
-        val answer1 = etAnswer1.text.toString()
-        val answer2 = etAnswer2.text.toString()
-        val answer3 = etAnswer3.text.toString()
-
-        if (question.isNotEmpty() && answer1.isNotEmpty() && answer2.isNotEmpty() && answer3.isNotEmpty()) {
+        val answer = etAnswer.text.toString()
+//        val answer2 = etAnswer2.text.toString()
+//        val answer3 = etAnswer3.text.toString()
+//                && answer2.isNotEmpty() && answer3.isNotEmpty()
+        if (question.isNotEmpty() && answer.isNotEmpty() ) {
             // Pass relevant data back as a result
             data.putExtra("question", question)
-            data.putExtra("answer1", answer1)
-            data.putExtra("answer2", answer2)
-            data.putExtra("answer3", answer3)
+            data.putExtra("answer", answer)
+//            data.putExtra("answer2", answer2)
+//            data.putExtra("answer3", answer3)
 
             setResult(RESULT_OK, data) // set result code and bundle data for response
 

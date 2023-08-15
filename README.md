@@ -1,5 +1,23 @@
 ## MindGlide
 
+## Lab 3
+
+### App Description
+A simple App designed to help users create, manage and review a collection of questions and answers. It uses a local database to store and retrieve data.
+
+### App Walk-though
+<img src="https://i.imgur.com/d9fD6pD.gif" width=200><br>
+
+## Required
+- [x] User can create a card and still see their created card when the app is relaunched.
+- [x] User can create multiple cards and browse through all created cards
+
+## Optional
+- [ ] User can delete a card and no longer see it in their deck anymore
+- [ ] Flashcards are shown in random order instead of the order they were created in
+- [ ] User can edit a card and see the edit saved when they browse through their deck of cards
+- [ ] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
 ## Lab 2
 
 ### App Description
@@ -29,7 +47,6 @@ This is a simple flashcard app that allows users to add questions and answers, a
 It is a simple Flashcard app that can show a question and answer it when the user touches it. The app is written in Kotlin.
 
 ### App Walk-though
-
 <img src="https://imgur.com/YJfgTRe.gif" width=200><br>
 
 ## Required
