@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addBtn : ImageView
     private lateinit var ivEditBtn : ImageView
     private lateinit var ivNextBtn : ImageView
+    private lateinit var ivDeleteBtn : ImageView
     private lateinit var flashcardDatabase : FlashcardDatabase
     private  var allFlashcards = mutableListOf<Flashcard>()
     private var currentCardDisplayedIndex = 0
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             tvFlashcardAnswer.text = allFlashcards[0].answer
         }
 
-        // Add onClickListener to the save, edit button and question textview
+        // Add onClickListener to the save, edit, next and delete button and question textview
         addBtn.setOnClickListener {
             val intent = Intent(this, AddCardActivity::class.java)
             addCardActivityResultLauncher.launch(intent)
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         ivNextBtn.setOnClickListener {
             getNext()
+        }
+
+        ivDeleteBtn.setOnClickListener {
+            deleteCard()
         }
 
         tvFlashcardQuestion.setOnClickListener{
@@ -68,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         addBtn = findViewById(R.id.ivAddBtn)
         ivEditBtn = findViewById(R.id.ivEditBtn)
         ivNextBtn = findViewById(R.id.ivNextBtn)
+        ivDeleteBtn = findViewById(R.id.ivDeleteBtn)
     }
 
     private fun startAddCardActivity(){
@@ -100,11 +106,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         // set the question and answer TextViews with data from the database
-//        allFlashcards = flashcardDatabase.getAllCards().toMutableList()
         val (question, answer) = allFlashcards[currentCardDisplayedIndex]
 
         tvFlashcardQuestion.text = question
         tvFlashcardAnswer.text = answer
+    }
+
+    private fun deleteCard(){
+        flashcardDatabase.deleteCard(tvFlashcardQuestion.text.toString())
+        allFlashcards = flashcardDatabase.getAllCards().toMutableList()
+
+        if (allFlashcards.size == 0){
+            ivNextBtn.visibility = View.INVISIBLE
+            ivEditBtn.visibility = View.INVISIBLE
+            ivDeleteBtn.visibility = View.INVISIBLE
+        }
+
+        if (currentCardDisplayedIndex > 0){
+            currentCardDisplayedIndex -= 1
+        }
     }
 
     // This extracts any data that was passed back from AddCardActivity

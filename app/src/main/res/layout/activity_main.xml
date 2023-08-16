@@ -34,6 +34,16 @@
         android:visibility="invisible"/>
 
     <ImageView
+        android:id="@+id/ivDeleteBtn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvFlashcardQuestion"
+        android:src="@drawable/delete_icon_foreground"
+        android:contentDescription="@string/delete_button"/>
+
+    <ImageView
         android:id="@+id/ivNextBtn"
         android:layout_width="130dp"
         android:layout_height="130dp"
