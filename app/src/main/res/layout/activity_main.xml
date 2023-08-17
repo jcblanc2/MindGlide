@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/tvFlashcardQuestion"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="170dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -17,21 +17,47 @@
         android:elevation="5dp"
         android:gravity="center"
         android:textColor="@color/blue_gray"
+        android:background="@drawable/card_question_background"
         android:textSize="40sp" />
 
     <TextView
         android:id="@+id/tvFlashcardAnswer"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/tvFlashcardQuestion"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@color/blue_gray"
         android:elevation="5dp"
         android:gravity="center"
-        android:textColor="@color/blue_gray"
+        android:textColor="@color/white"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/tvWrongAnswer1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/tvFlashcardAnswer"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:elevation="5dp"
         android:textSize="40sp"
-        android:visibility="invisible"/>
+        android:background="@color/blue_gray"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/tvWrongAnswer2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/tvWrongAnswer1"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:elevation="5dp"
+        android:textSize="40sp"
+        android:background="@color/blue_gray"
+        android:textColor="@color/white"/>
 
     <ImageView
         android:id="@+id/ivNoCards"
@@ -57,44 +83,46 @@
 
     <ImageView
         android:id="@+id/ivDeleteBtn"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_below="@id/tvFlashcardQuestion"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_below="@id/tvWrongAnswer2"
         android:contentDescription="@string/delete_button"
         android:src="@drawable/delete_icon_foreground" />
 
     <ImageView
         android:id="@+id/ivNextBtn"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_margin="5dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/tvWrongAnswer2"
         android:layout_alignParentEnd="true"
-        android:layout_below="@id/tvFlashcardQuestion"
-        android:src="@drawable/next_icon_foreground"
-        android:contentDescription="@string/button_next"/>
+        android:layout_marginEnd="5dp"
+        android:contentDescription="@string/button_next"
+        android:src="@drawable/next_icon_foreground" />
 
     <ImageView
         android:id="@+id/ivAddBtn"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_margin="5dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/add_icon_foreground"
-        android:contentDescription="@string/button_add" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/button_add"
+        android:src="@drawable/add_icon_foreground" />
 
     <ImageView
         android:id="@+id/ivEditBtn"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_margin="5dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/edit_icon_foreground"
-        android:contentDescription="@string/edit_button"/>
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/edit_button"
+        android:src="@drawable/edit_icon_foreground" />
 </RelativeLayout>

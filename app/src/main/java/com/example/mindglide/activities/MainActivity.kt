@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mindglide.R
@@ -15,8 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
     private lateinit var tvFlashcardQuestion : TextView
     private lateinit var tvFlashcardAnswer : TextView
-    private lateinit var tvFlashcardAnswer2 : TextView
-    private lateinit var tvFlashcardAnswer3 : TextView
+    private lateinit var tvWrongAnswer1 : TextView
+    private lateinit var tvWrongAnswer2 : TextView
     private lateinit var tvNoCards : TextView
     private lateinit var addBtn : ImageView
     private lateinit var ivEditBtn : ImageView
@@ -54,8 +55,7 @@ class MainActivity : AppCompatActivity() {
         ivEditBtn.setOnClickListener {
             for (card in allFlashcards) {
                 if (card.question == tvFlashcardQuestion.text) {
-                    cardToEdit.question = card.question
-                    cardToEdit.answer = card.answer
+                    cardToEdit = Flashcard(card.question, card.answer)
                 }
             }
 
@@ -69,17 +69,13 @@ class MainActivity : AppCompatActivity() {
         ivDeleteBtn.setOnClickListener {
             deleteCard()
         }
-
-        tvFlashcardQuestion.setOnClickListener{
-            showAnswer()
-        }
     }
 
     private fun initializeViews(){
         tvFlashcardQuestion = findViewById(R.id.tvFlashcardQuestion)
         tvFlashcardAnswer = findViewById(R.id.tvFlashcardAnswer)
-//        tvFlashcardAnswer2 = findViewById(R.id.tvFlashcardAnswer2)
-//        tvFlashcardAnswer3 = findViewById(R.id.tvFlashcardAnswer3)
+        tvWrongAnswer1 = findViewById(R.id.tvWrongAnswer1)
+        tvWrongAnswer2 = findViewById(R.id.tvWrongAnswer2)
         tvNoCards = findViewById(R.id.tvNoCards)
         addBtn = findViewById(R.id.ivAddBtn)
         ivEditBtn = findViewById(R.id.ivEditBtn)
@@ -92,6 +88,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, AddCardActivity::class.java)
         intent.putExtra("question", tvFlashcardQuestion.text.toString())
         intent.putExtra("answer", tvFlashcardAnswer.text.toString())
+        intent.putExtra("wrong_answer_1", tvWrongAnswer1.text.toString())
+        intent.putExtra("wrong_answer_2", tvWrongAnswer2.text.toString())
         editResultLauncher.launch(intent)
     }
 
@@ -99,8 +97,6 @@ class MainActivity : AppCompatActivity() {
         if (allFlashcards.size == 0) {
             return
         }
-
-        hideAnswer()
 
         setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
     }
@@ -122,6 +118,8 @@ class MainActivity : AppCompatActivity() {
         ivDeleteBtn.visibility = View.GONE
         tvFlashcardQuestion.visibility = View.GONE
         tvFlashcardAnswer.visibility = View.GONE
+        tvWrongAnswer1.visibility = View.GONE
+        tvWrongAnswer2.visibility = View.GONE
         ivNoCards.visibility = View.VISIBLE
         tvNoCards.visibility = View.VISIBLE
     }
@@ -132,26 +130,20 @@ class MainActivity : AppCompatActivity() {
         ivDeleteBtn.visibility = View.VISIBLE
         tvFlashcardQuestion.visibility = View.VISIBLE
         tvFlashcardAnswer.visibility = View.INVISIBLE
+        tvWrongAnswer1.visibility = View.VISIBLE
+        tvWrongAnswer2.visibility = View.VISIBLE
         ivNoCards.visibility = View.GONE
         tvNoCards.visibility = View.GONE
     }
 
     private fun setUpFlashcardViews(index: Int){
         // set the question and answer TextViews with data from the database
-        val (question, answer) = allFlashcards[index]
+        val (question, answer, wrongAnswer1, wrongAnswer2) = allFlashcards[index]
 
         tvFlashcardQuestion.text = question
         tvFlashcardAnswer.text = answer
-    }
-
-    private fun showAnswer(){
-        tvFlashcardQuestion.visibility = View.INVISIBLE
-        tvFlashcardAnswer.visibility = View.VISIBLE
-    }
-
-    private fun hideAnswer(){
-        tvFlashcardQuestion.visibility = View.VISIBLE
-        tvFlashcardAnswer.visibility = View.INVISIBLE
+        tvWrongAnswer1.text = wrongAnswer1
+        tvWrongAnswer2.text = wrongAnswer2
     }
 
     private fun getRandomNumber(minNumber: Int, maxNumber: Int): Int {
@@ -174,22 +166,20 @@ class MainActivity : AppCompatActivity() {
             if (data != null) {
                 val question = data.extras!!.getString("question")
                 val answer = data.extras!!.getString("answer")
-//                val answer2 = data.extras!!.getString("answer2")
-//                val answer3 = data.extras!!.getString("answer3")
+                val wrongAnswer1 = data.extras!!.getString("wrong_answer_1")
+                val wrongAnswer2 = data.extras!!.getString("wrong_answer_2")
 
                 hideEmptyState()
 
                 tvFlashcardQuestion.text = question
                 tvFlashcardAnswer.text = answer
-//                tvFlashcardAnswer2.text = answer2
-//                tvFlashcardAnswer3.text = answer3
+                tvWrongAnswer1.text = wrongAnswer1
+                tvWrongAnswer2.text = wrongAnswer2
 
                 // Save newly created flashcard to database
-                if (question != null && answer != null) {
-                    flashcardDatabase.insertCard(Flashcard(question.toString(), answer.toString()))
+                if (question != null && answer != null && wrongAnswer1 != null && wrongAnswer2 != null) {
+                    flashcardDatabase.insertCard(Flashcard(question, answer, wrongAnswer1, wrongAnswer2))
                     allFlashcards = flashcardDatabase.getAllCards().toMutableList()
-                } else {
-                    Log.e("TAG", "Missing question or answer to input into database.")
                 }
 
                 // Get the root view of the activity
@@ -206,21 +196,23 @@ class MainActivity : AppCompatActivity() {
             if (data != null) {
                 val question = data.extras!!.getString("question")
                 val answer = data.extras!!.getString("answer")
+                val wrongAnswer1 = data.extras!!.getString("wrong_answer_2")
+                val wrongAnswer2 = data.extras!!.getString("wrong_answer_2")
 
                 hideEmptyState()
 
                 tvFlashcardQuestion.text = question
                 tvFlashcardAnswer.text = answer
+                tvWrongAnswer1.text = wrongAnswer1
+                tvWrongAnswer2.text = wrongAnswer2
 
-                // update flashcard to database
-                if (question != null && answer != null) {
+                if (question != null && answer != null && wrongAnswer1 != null && wrongAnswer2 != null) {
                     cardToEdit.question = question
                     cardToEdit.answer = answer
+                    cardToEdit.wrongAnswer1 = wrongAnswer1
+                    cardToEdit.wrongAnswer2 = wrongAnswer2
 
                     flashcardDatabase.updateCard(cardToEdit)
-                    allFlashcards = flashcardDatabase.getAllCards().toMutableList()
-                } else {
-                    Log.e("TAG", "Missing question or answer to input into database.")
                 }
             }
         }

@@ -11,8 +11,8 @@ import com.example.mindglide.R
 class AddCardActivity : AppCompatActivity() {
     private lateinit var etQuestion : EditText
     private lateinit var etAnswer : EditText
-    private lateinit var etAnswer2 : EditText
-    private lateinit var etAnswer3 : EditText
+    private lateinit var etWrongAnswer1 : EditText
+    private lateinit var etWrongAnswer2 : EditText
     private lateinit var cancelBtn : ImageView
     private lateinit var saveBtn : ImageView
 
@@ -39,8 +39,8 @@ class AddCardActivity : AppCompatActivity() {
     private fun initializeViews(){
         etQuestion = findViewById(R.id.etQuestion)
         etAnswer = findViewById(R.id.etAnswer)
-//        etAnswer2 = findViewById(R.id.etAnswer2)
-//        etAnswer3 = findViewById(R.id.etAnswer3)
+        etWrongAnswer1 = findViewById(R.id.etWrongAnswer1)
+        etWrongAnswer2 = findViewById(R.id.etWrongAnswer2)
         cancelBtn = findViewById(R.id.ivCancelBtn)
         saveBtn = findViewById(R.id.ivSaveBtn)
     }
@@ -48,8 +48,8 @@ class AddCardActivity : AppCompatActivity() {
     private fun getData(){
         etQuestion.setText(intent.getStringExtra("question"))
         etAnswer.setText(intent.getStringExtra("answer"))
-//        etAnswer2.setText(intent.getStringExtra("answer2"))
-//        etAnswer3.setText(intent.getStringExtra("answer3"))
+        etWrongAnswer1.setText(intent.getStringExtra("wrong_answer_1"))
+        etWrongAnswer2.setText(intent.getStringExtra("wrong_answer_2"))
     }
 
     // closes AddCardActivity and returns to MainActivity and put our data
@@ -58,18 +58,17 @@ class AddCardActivity : AppCompatActivity() {
 
         val question = etQuestion.text.toString()
         val answer = etAnswer.text.toString()
-//        val answer2 = etAnswer2.text.toString()
-//        val answer3 = etAnswer3.text.toString()
-//                && answer2.isNotEmpty() && answer3.isNotEmpty()
-        if (question.isNotEmpty() && answer.isNotEmpty() ) {
+        val wrongAnswer1 = etWrongAnswer1.text.toString()
+        val wrongAnswer2 = etWrongAnswer2.text.toString()
+
+        if (question.isNotEmpty() && answer.isNotEmpty() && wrongAnswer1.isNotEmpty() && wrongAnswer2.isNotEmpty()) {
             // Pass relevant data back as a result
             data.putExtra("question", question)
             data.putExtra("answer", answer)
-//            data.putExtra("answer2", answer2)
-//            data.putExtra("answer3", answer3)
+            data.putExtra("wrong_answer_1", wrongAnswer1)
+            data.putExtra("wrong_answer_2", wrongAnswer2)
 
             setResult(RESULT_OK, data) // set result code and bundle data for response
-
             finish() // closes the activity, pass data to parent
         }
         else {

@@ -24,7 +24,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etAnswer_text_input_layout"
+        android:id="@+id/etAnswer1_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/etQuestion_text_input_layout">
@@ -39,23 +39,61 @@
             android:hint="@string/answer_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etAnswer2_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAnswer1_text_input_layout">
+
+        <EditText
+            android:id="@+id/etWrongAnswer1"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/wrong_answer1_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etAnswer3_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAnswer2_text_input_layout">
+
+        <EditText
+            android:id="@+id/etWrongAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/wrong_answer2_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <ImageView
         android:id="@+id/ivCancelBtn"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_margin="5dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/cancel_icon_foreground"
-        android:contentDescription="@string/cancel_button" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/cancel_button"
+        android:src="@drawable/cancel_icon_foreground" />
 
     <ImageView
         android:id="@+id/ivSaveBtn"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_margin="5dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/save_icon_foreground"
-        android:contentDescription="@string/save_button" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/save_button"
+        android:src="@drawable/save_icon_foreground" />
 </RelativeLayout>
