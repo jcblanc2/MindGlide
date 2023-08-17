@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:elevation="5dp"
@@ -30,34 +30,37 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/blue_gray"
-        android:elevation="5dp"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tvWrongAnswer1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/tvFlashcardAnswer"
-        android:gravity="center"
-        android:layout_margin="10dp"
-        android:elevation="5dp"
-        android:textSize="40sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/blue_gray"
-        android:textColor="@color/white"/>
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tvWrongAnswer2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/tvWrongAnswer1"
-        android:gravity="center"
-        android:layout_margin="10dp"
-        android:elevation="5dp"
-        android:textSize="40sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/blue_gray"
-        android:textColor="@color/white"/>
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/ivNoCards"
@@ -88,7 +91,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tvWrongAnswer2"
         android:contentDescription="@string/delete_button"
-        android:src="@drawable/delete_icon_foreground" />
+        android:src="@drawable/trash_icon_foreground" />
 
     <ImageView
         android:id="@+id/ivNextBtn"

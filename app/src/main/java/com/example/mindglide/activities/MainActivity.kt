@@ -55,10 +55,9 @@ class MainActivity : AppCompatActivity() {
         ivEditBtn.setOnClickListener {
             for (card in allFlashcards) {
                 if (card.question == tvFlashcardQuestion.text) {
-                    cardToEdit = Flashcard(card.question, card.answer)
+                    cardToEdit = Flashcard(card.question, card.answer, card.wrongAnswer1, card.wrongAnswer2, card.uuid)
                 }
             }
-
             startAddCardActivity()
         }
 
@@ -129,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         ivEditBtn.visibility = View.VISIBLE
         ivDeleteBtn.visibility = View.VISIBLE
         tvFlashcardQuestion.visibility = View.VISIBLE
-        tvFlashcardAnswer.visibility = View.INVISIBLE
+        tvFlashcardAnswer.visibility = View.VISIBLE
         tvWrongAnswer1.visibility = View.VISIBLE
         tvWrongAnswer2.visibility = View.VISIBLE
         ivNoCards.visibility = View.GONE
@@ -196,7 +195,7 @@ class MainActivity : AppCompatActivity() {
             if (data != null) {
                 val question = data.extras!!.getString("question")
                 val answer = data.extras!!.getString("answer")
-                val wrongAnswer1 = data.extras!!.getString("wrong_answer_2")
+                val wrongAnswer1 = data.extras!!.getString("wrong_answer_1")
                 val wrongAnswer2 = data.extras!!.getString("wrong_answer_2")
 
                 hideEmptyState()
@@ -213,6 +212,7 @@ class MainActivity : AppCompatActivity() {
                     cardToEdit.wrongAnswer2 = wrongAnswer2
 
                     flashcardDatabase.updateCard(cardToEdit)
+                    allFlashcards = flashcardDatabase.getAllCards().toMutableList()
                 }
             }
         }
