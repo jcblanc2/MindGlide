@@ -15,4 +15,6 @@
     <string name="snackbar_text">Card successfully created</string>
     <string name="button_next">button next</string>
     <string name="delete_button">delete button</string>
+    <string name="icon_no_cards">icon no cards</string>
+    <string name="empty_state_text">Wow, such empty! \n Click on button at the bottom to add cards.</string>
 </resources>

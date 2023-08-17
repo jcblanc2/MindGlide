@@ -34,14 +34,39 @@
         android:visibility="invisible"/>
 
     <ImageView
+        android:id="@+id/ivNoCards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/emptycards1_icon_foreground"
+        android:contentDescription="@string/icon_no_cards"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tvNoCards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivNoCards"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:textColor="@color/blue_gray"
+        android:textSize="20sp"
+        android:text="@string/empty_state_text"
+        android:visibility="gone"/>
+
+    <ImageView
         android:id="@+id/ivDeleteBtn"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_margin="5dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/tvFlashcardQuestion"
-        android:src="@drawable/delete_icon_foreground"
-        android:contentDescription="@string/delete_button"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/delete_button"
+        android:src="@drawable/delete_icon_foreground" />
 
     <ImageView
         android:id="@+id/ivNextBtn"
