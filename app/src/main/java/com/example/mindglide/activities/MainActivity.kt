@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         addBtn.setOnClickListener {
             val intent = Intent(this, AddCardActivity::class.java)
             addCardActivityResultLauncher.launch(intent)
+            overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
 
         ivEditBtn.setOnClickListener {
@@ -90,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("wrong_answer_1", tvWrongAnswer1.text.toString())
         intent.putExtra("wrong_answer_2", tvWrongAnswer2.text.toString())
         editResultLauncher.launch(intent)
+        overridePendingTransition(R.anim.right_in, R.anim.left_out)
     }
 
     private fun getNext(){

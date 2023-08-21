@@ -9,5 +9,13 @@
     <color name="background_color">#fdfdfd</color>
 
     <color name="blue_gray">#485062</color>
+    <color name="text_color">#333333</color>
+    <color name="answer_background_color">#e0e0e0</color>
+
+    <color name="green">#27ae60</color>
+    <color name="orange">#f39c12</color>
+    <color name="red">#e74c3c</color>
+
+
 
 </resources>
