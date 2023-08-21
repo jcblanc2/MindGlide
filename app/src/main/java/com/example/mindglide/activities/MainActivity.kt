@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -107,7 +109,44 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
+        val leftOutAnim = AnimationUtils.loadAnimation(this, R.anim.left_out)
+        val rightInAnim = AnimationUtils.loadAnimation(this, R.anim.right_in)
+
+        leftOutAnim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+                // we don't need to worry about this method
+            }
+        })
+
+        rightInAnim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+                // we don't need to worry about this method
+            }
+        })
+
+        // set the question and answer TextViews with data from the database
+        val (question, answer, wrongAnswer1, wrongAnswer2) = allFlashcards[getRandomNumber(0, allFlashcards.size - 1)]
+
+        tvFlashcardAnswer.visibility = View.INVISIBLE
+        tvFlashcardQuestion.visibility = View.VISIBLE
+
+        tvFlashcardQuestion.text = question
+        tvFlashcardAnswer.text = answer
+
+        tvFlashcardQuestion.startAnimation(leftOutAnim)
+        tvFlashcardQuestion.startAnimation(rightInAnim)
     }
 
 
