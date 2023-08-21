@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -66,21 +67,28 @@ class MainActivity : AppCompatActivity() {
             getNext()
         }
 
-        ivDeleteBtn.setOnClickListener {
-            deleteCard()
+        tvFlashcardQuestion.setOnClickListener {
+            val cx = tvFlashcardAnswer.width / 2
+            val cy = tvFlashcardAnswer.height / 2
+
+            val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
+            val anim = ViewAnimationUtils.createCircularReveal(tvFlashcardAnswer, cx, cy, 0f, finalRadius)
+
+            tvFlashcardQuestion.visibility = View.INVISIBLE
+            tvFlashcardAnswer.visibility = View.VISIBLE
+
+            anim.duration = 2000
+            anim.start()
         }
     }
 
     private fun initializeViews(){
         tvFlashcardQuestion = findViewById(R.id.tvFlashcardQuestion)
-        tvFlashcardAnswer = findViewById(R.id.tvFlashcardAnswer)
-        tvWrongAnswer1 = findViewById(R.id.tvWrongAnswer1)
-        tvWrongAnswer2 = findViewById(R.id.tvWrongAnswer2)
+        tvFlashcardAnswer = findViewById(R.id.tvAnswer)
         tvNoCards = findViewById(R.id.tvNoCards)
         addBtn = findViewById(R.id.ivAddBtn)
         ivEditBtn = findViewById(R.id.ivEditBtn)
         ivNextBtn = findViewById(R.id.ivNextBtn)
-        ivDeleteBtn = findViewById(R.id.ivDeleteBtn)
         ivNoCards = findViewById(R.id.ivNoCards)
     }
 
@@ -102,25 +110,12 @@ class MainActivity : AppCompatActivity() {
         setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
     }
 
-    private fun deleteCard(){
-        flashcardDatabase.deleteCard(tvFlashcardQuestion.text.toString())
-        allFlashcards = flashcardDatabase.getAllCards().toMutableList()
-
-        if (allFlashcards.size == 0){
-            showEmptyState()
-        }else{
-            setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
-        }
-    }
 
     private fun showEmptyState(){
         ivNextBtn.visibility = View.GONE
         ivEditBtn.visibility = View.GONE
-        ivDeleteBtn.visibility = View.GONE
         tvFlashcardQuestion.visibility = View.GONE
         tvFlashcardAnswer.visibility = View.GONE
-        tvWrongAnswer1.visibility = View.GONE
-        tvWrongAnswer2.visibility = View.GONE
         ivNoCards.visibility = View.VISIBLE
         tvNoCards.visibility = View.VISIBLE
     }
@@ -128,11 +123,8 @@ class MainActivity : AppCompatActivity() {
     private fun hideEmptyState(){
         ivNextBtn.visibility = View.VISIBLE
         ivEditBtn.visibility = View.VISIBLE
-        ivDeleteBtn.visibility = View.VISIBLE
         tvFlashcardQuestion.visibility = View.VISIBLE
         tvFlashcardAnswer.visibility = View.VISIBLE
-        tvWrongAnswer1.visibility = View.VISIBLE
-        tvWrongAnswer2.visibility = View.VISIBLE
         ivNoCards.visibility = View.GONE
         tvNoCards.visibility = View.GONE
     }
@@ -141,10 +133,11 @@ class MainActivity : AppCompatActivity() {
         // set the question and answer TextViews with data from the database
         val (question, answer, wrongAnswer1, wrongAnswer2) = allFlashcards[index]
 
+        tvFlashcardAnswer.visibility = View.INVISIBLE
+        tvFlashcardQuestion.visibility = View.VISIBLE
+
         tvFlashcardQuestion.text = question
         tvFlashcardAnswer.text = answer
-        tvWrongAnswer1.text = wrongAnswer1
-        tvWrongAnswer2.text = wrongAnswer2
     }
 
     private fun getRandomNumber(minNumber: Int, maxNumber: Int): Int {
@@ -174,8 +167,6 @@ class MainActivity : AppCompatActivity() {
 
                 tvFlashcardQuestion.text = question
                 tvFlashcardAnswer.text = answer
-                tvWrongAnswer1.text = wrongAnswer1
-                tvWrongAnswer2.text = wrongAnswer2
 
                 // Save newly created flashcard to database
                 if (question != null && answer != null && wrongAnswer1 != null && wrongAnswer2 != null) {
@@ -204,8 +195,6 @@ class MainActivity : AppCompatActivity() {
 
                 tvFlashcardQuestion.text = question
                 tvFlashcardAnswer.text = answer
-                tvWrongAnswer1.text = wrongAnswer1
-                tvWrongAnswer2.text = wrongAnswer2
 
                 if (question != null && answer != null && wrongAnswer1 != null && wrongAnswer2 != null) {
                     cardToEdit.question = question
