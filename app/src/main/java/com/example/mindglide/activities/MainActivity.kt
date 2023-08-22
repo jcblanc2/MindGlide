@@ -3,6 +3,7 @@ package com.example.mindglide.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvFlashcardAnswer : TextView
     private lateinit var tvWrongAnswer1 : TextView
     private lateinit var tvWrongAnswer2 : TextView
+    private lateinit var tvTimer : TextView
     private lateinit var tvNoCards : TextView
     private lateinit var addBtn : ImageView
     private lateinit var ivEditBtn : ImageView
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private  var allFlashcards = mutableListOf<Flashcard>()
     private var previousRandomNumber = -1
     private lateinit var cardToEdit: Flashcard
+    var countDownTimer: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,15 @@ class MainActivity : AppCompatActivity() {
             setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
         }else{
             showEmptyState()
+        }
+
+        //  the countdown timer
+        countDownTimer = object : CountDownTimer(15000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                tvTimer.text = "" + millisUntilFinished / 1000
+            }
+
+            override fun onFinish() {}
         }
 
         // Add onClickListener to the save, edit, next and delete button and question textview
@@ -92,6 +104,12 @@ class MainActivity : AppCompatActivity() {
         ivEditBtn = findViewById(R.id.ivEditBtn)
         ivNextBtn = findViewById(R.id.ivNextBtn)
         ivNoCards = findViewById(R.id.ivNoCards)
+        tvTimer = findViewById(R.id.timer)
+    }
+
+    private fun startTimer() {
+        countDownTimer?.cancel()
+        countDownTimer?.start()
     }
 
     private fun startAddCardActivity(){
@@ -142,6 +160,7 @@ class MainActivity : AppCompatActivity() {
         tvFlashcardAnswer.visibility = View.INVISIBLE
         tvFlashcardQuestion.visibility = View.VISIBLE
 
+        startTimer()
         tvFlashcardQuestion.text = question
         tvFlashcardAnswer.text = answer
 
