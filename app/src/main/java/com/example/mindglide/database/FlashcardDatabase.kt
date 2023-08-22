@@ -1,7 +1,8 @@
-package com.example.mindglide.activities
+package com.example.mindglide.database
 
 import android.content.Context
 import androidx.room.Room
+import com.example.mindglide.model.Flashcard
 
 class FlashcardDatabase internal constructor(context: Context) {
 
@@ -10,8 +11,10 @@ class FlashcardDatabase internal constructor(context: Context) {
     private fun initFirstCard() {
         if (db.flashcardDao().getAll().isEmpty()) {
             insertCard(Flashcard("Who is the 44th President of the United States?", "Barack Obama", "George W. H. Bush", "Bill Clinton"))
-            insertCard(Flashcard("What is the closest planet to the sun?", "Mercury", "Venus", "Neptune"
-            ))
+            insertCard(
+                Flashcard("What is the closest planet to the sun?", "Mercury", "Venus", "Neptune"
+            )
+            )
         }
     }
 

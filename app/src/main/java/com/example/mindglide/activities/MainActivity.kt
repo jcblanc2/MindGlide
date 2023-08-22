@@ -4,21 +4,22 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mindglide.R
+import com.example.mindglide.database.FlashcardDatabase
+import com.example.mindglide.model.Flashcard
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var tvFlashcardQuestion : TextView
+    private lateinit var tvHideAnswer : TextView
     private lateinit var tvFlashcardAnswer : TextView
     private lateinit var tvWrongAnswer1 : TextView
     private lateinit var tvWrongAnswer2 : TextView
@@ -46,19 +47,20 @@ class MainActivity : AppCompatActivity() {
         flashcardDatabase = FlashcardDatabase(this)
         allFlashcards = flashcardDatabase.getAllCards().toMutableList()
 
+        //  the countdown timer
+        countDownTimer = object : CountDownTimer(16000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val time = "" + millisUntilFinished / 1000
+                tvTimer.text = time
+            }
+
+            override fun onFinish() {}
+        }
+
         if (allFlashcards.size > 0) {
             setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
         }else{
             showEmptyState()
-        }
-
-        //  the countdown timer
-        countDownTimer = object : CountDownTimer(15000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                tvTimer.text = "" + millisUntilFinished / 1000
-            }
-
-            override fun onFinish() {}
         }
 
         // Add onClickListener to the save, edit, next and delete button and question textview
@@ -81,15 +83,19 @@ class MainActivity : AppCompatActivity() {
             getNext()
         }
 
+        ivDeleteBtn.setOnClickListener {
+            deleteCard()
+        }
+
         tvFlashcardQuestion.setOnClickListener {
-            val cx = tvFlashcardAnswer.width / 2
-            val cy = tvFlashcardAnswer.height / 2
+            val cx = tvHideAnswer.width / 2
+            val cy = tvHideAnswer.height / 2
 
             val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
-            val anim = ViewAnimationUtils.createCircularReveal(tvFlashcardAnswer, cx, cy, 0f, finalRadius)
+            val anim = ViewAnimationUtils.createCircularReveal(tvHideAnswer, cx, cy, 0f, finalRadius)
 
             tvFlashcardQuestion.visibility = View.INVISIBLE
-            tvFlashcardAnswer.visibility = View.VISIBLE
+            tvHideAnswer.visibility = View.VISIBLE
 
             anim.duration = 2000
             anim.start()
@@ -98,13 +104,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun initializeViews(){
         tvFlashcardQuestion = findViewById(R.id.tvFlashcardQuestion)
-        tvFlashcardAnswer = findViewById(R.id.tvAnswer)
+        tvHideAnswer = findViewById(R.id.tvHideAnswer)
+        tvFlashcardAnswer = findViewById(R.id.tvFlashcardAnswer)
+        tvWrongAnswer1 = findViewById(R.id.tvWrongAnswer1)
+        tvWrongAnswer2 = findViewById(R.id.tvWrongAnswer2)
+        tvTimer = findViewById(R.id.timer)
         tvNoCards = findViewById(R.id.tvNoCards)
         addBtn = findViewById(R.id.ivAddBtn)
         ivEditBtn = findViewById(R.id.ivEditBtn)
         ivNextBtn = findViewById(R.id.ivNextBtn)
+        ivDeleteBtn = findViewById(R.id.ivDeleteBtn)
         ivNoCards = findViewById(R.id.ivNoCards)
-        tvTimer = findViewById(R.id.timer)
     }
 
     private fun startTimer() {
@@ -141,7 +151,6 @@ class MainActivity : AppCompatActivity() {
                 // we don't need to worry about this method
             }
         })
-
         rightInAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {
             }
@@ -154,26 +163,33 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // set the question and answer TextViews with data from the database
-        val (question, answer, wrongAnswer1, wrongAnswer2) = allFlashcards[getRandomNumber(0, allFlashcards.size - 1)]
-
-        tvFlashcardAnswer.visibility = View.INVISIBLE
-        tvFlashcardQuestion.visibility = View.VISIBLE
-
-        startTimer()
-        tvFlashcardQuestion.text = question
-        tvFlashcardAnswer.text = answer
+        setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
 
         tvFlashcardQuestion.startAnimation(leftOutAnim)
         tvFlashcardQuestion.startAnimation(rightInAnim)
     }
 
+    private fun deleteCard(){
+        flashcardDatabase.deleteCard(tvFlashcardQuestion.text.toString())
+        allFlashcards = flashcardDatabase.getAllCards().toMutableList()
+
+        if (allFlashcards.size == 0){
+            showEmptyState()
+        }else{
+            setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
+        }
+    }
 
     private fun showEmptyState(){
         ivNextBtn.visibility = View.GONE
         ivEditBtn.visibility = View.GONE
+        ivDeleteBtn.visibility = View.GONE
         tvFlashcardQuestion.visibility = View.GONE
         tvFlashcardAnswer.visibility = View.GONE
+        tvHideAnswer.visibility = View.GONE
+        tvTimer.visibility = View.GONE
+        tvWrongAnswer1.visibility = View.GONE
+        tvWrongAnswer2.visibility = View.GONE
         ivNoCards.visibility = View.VISIBLE
         tvNoCards.visibility = View.VISIBLE
     }
@@ -181,8 +197,12 @@ class MainActivity : AppCompatActivity() {
     private fun hideEmptyState(){
         ivNextBtn.visibility = View.VISIBLE
         ivEditBtn.visibility = View.VISIBLE
+        ivDeleteBtn.visibility = View.VISIBLE
         tvFlashcardQuestion.visibility = View.VISIBLE
         tvFlashcardAnswer.visibility = View.VISIBLE
+        tvTimer.visibility = View.VISIBLE
+        tvWrongAnswer1.visibility = View.VISIBLE
+        tvWrongAnswer2.visibility = View.VISIBLE
         ivNoCards.visibility = View.GONE
         tvNoCards.visibility = View.GONE
     }
@@ -191,11 +211,15 @@ class MainActivity : AppCompatActivity() {
         // set the question and answer TextViews with data from the database
         val (question, answer, wrongAnswer1, wrongAnswer2) = allFlashcards[index]
 
-        tvFlashcardAnswer.visibility = View.INVISIBLE
+        tvHideAnswer.visibility = View.INVISIBLE
         tvFlashcardQuestion.visibility = View.VISIBLE
 
         tvFlashcardQuestion.text = question
         tvFlashcardAnswer.text = answer
+        tvHideAnswer.text = answer
+        tvWrongAnswer1.text = wrongAnswer1
+        tvWrongAnswer2.text = wrongAnswer2
+        startTimer()
     }
 
     private fun getRandomNumber(minNumber: Int, maxNumber: Int): Int {
@@ -225,6 +249,9 @@ class MainActivity : AppCompatActivity() {
 
                 tvFlashcardQuestion.text = question
                 tvFlashcardAnswer.text = answer
+                tvHideAnswer.text = answer
+                tvWrongAnswer1.text = wrongAnswer1
+                tvWrongAnswer2.text = wrongAnswer2
 
                 // Save newly created flashcard to database
                 if (question != null && answer != null && wrongAnswer1 != null && wrongAnswer2 != null) {
@@ -253,6 +280,9 @@ class MainActivity : AppCompatActivity() {
 
                 tvFlashcardQuestion.text = question
                 tvFlashcardAnswer.text = answer
+                tvHideAnswer.text = answer
+                tvWrongAnswer1.text = wrongAnswer1
+                tvWrongAnswer2.text = wrongAnswer2
 
                 if (question != null && answer != null && wrongAnswer1 != null && wrongAnswer2 != null) {
                     cardToEdit.question = question

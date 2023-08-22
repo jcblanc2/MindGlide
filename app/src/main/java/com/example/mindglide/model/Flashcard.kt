@@ -1,4 +1,4 @@
-package com.example.mindglide.activities
+package com.example.mindglide.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
