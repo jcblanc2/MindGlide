@@ -88,17 +88,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         tvFlashcardQuestion.setOnClickListener {
-            val cx = tvHideAnswer.width / 2
-            val cy = tvHideAnswer.height / 2
+            tvFlashcardQuestion.cameraDistance = 25000F
+            tvHideAnswer.cameraDistance = 25000F
 
-            val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
-            val anim = ViewAnimationUtils.createCircularReveal(tvHideAnswer, cx, cy, 0f, finalRadius)
-
-            tvFlashcardQuestion.visibility = View.INVISIBLE
-            tvHideAnswer.visibility = View.VISIBLE
-
-            anim.duration = 2000
-            anim.start()
+            tvFlashcardQuestion.animate()
+                .rotationY(90f)
+                .setDuration(200)
+                .withEndAction(
+                    Runnable {
+                        tvFlashcardQuestion.setVisibility(View.INVISIBLE)
+                        tvHideAnswer.visibility = View.VISIBLE
+                        // second quarter turn
+                        tvHideAnswer.rotationY = -90f
+                        tvHideAnswer.animate()
+                            .rotationY(0f)
+                            .setDuration(200)
+                            .start()
+                    }
+                ).start()
         }
     }
 
