@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
-import android.view.ViewAnimationUtils
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -13,9 +12,11 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mindglide.R
+import com.example.mindglide.animation.Presets
 import com.example.mindglide.database.FlashcardDatabase
 import com.example.mindglide.model.Flashcard
 import com.google.android.material.snackbar.Snackbar
+import nl.dionsegijn.konfetti.xml.KonfettiView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var tvFlashcardQuestion : TextView
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private var previousRandomNumber = -1
     private lateinit var cardToEdit: Flashcard
     var countDownTimer: CountDownTimer? = null
+    private lateinit var viewKonfetti: KonfettiView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,6 +109,20 @@ class MainActivity : AppCompatActivity() {
                     }
                 ).start()
         }
+
+        // Add onClickListener to the answers textview
+        tvWrongAnswer1.setOnClickListener {
+            tvWrongAnswer1.setBackgroundColor(resources.getColor(R.color.red, null))
+        }
+
+        tvWrongAnswer2.setOnClickListener {
+            tvWrongAnswer2.setBackgroundColor(resources.getColor(R.color.red, null))
+        }
+
+        tvFlashcardAnswer.setOnClickListener {
+            tvFlashcardAnswer.setBackgroundColor(resources.getColor(R.color.green, null))
+            viewKonfetti.start(Presets.explode())
+        }
     }
 
     private fun initializeViews(){
@@ -122,6 +138,7 @@ class MainActivity : AppCompatActivity() {
         ivNextBtn = findViewById(R.id.ivNextBtn)
         ivDeleteBtn = findViewById(R.id.ivDeleteBtn)
         ivNoCards = findViewById(R.id.ivNoCards)
+        viewKonfetti = findViewById(R.id.konfettiView)
     }
 
     private fun startTimer() {
