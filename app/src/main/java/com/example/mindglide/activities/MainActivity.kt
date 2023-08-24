@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var cardToEdit: Flashcard
     var countDownTimer: CountDownTimer? = null
     private lateinit var viewKonfetti: KonfettiView
+    private var isShowingAnswer = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +91,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         tvFlashcardQuestion.setOnClickListener {
+            isShowingAnswer = true
+
             tvFlashcardQuestion.cameraDistance = 25000F
             tvHideAnswer.cameraDistance = 25000F
 
@@ -98,11 +101,34 @@ class MainActivity : AppCompatActivity() {
                 .setDuration(200)
                 .withEndAction(
                     Runnable {
-                        tvFlashcardQuestion.setVisibility(View.INVISIBLE)
+                        tvFlashcardQuestion.visibility = View.INVISIBLE
                         tvHideAnswer.visibility = View.VISIBLE
                         // second quarter turn
                         tvHideAnswer.rotationY = -90f
                         tvHideAnswer.animate()
+                            .rotationY(0f)
+                            .setDuration(200)
+                            .start()
+                    }
+                ).start()
+        }
+
+        tvHideAnswer.setOnClickListener {
+            isShowingAnswer = false
+
+            tvFlashcardQuestion.cameraDistance = 25000F
+            tvHideAnswer.cameraDistance = 25000F
+
+            tvHideAnswer.animate()
+                .rotationY(90f)
+                .setDuration(200)
+                .withEndAction(
+                    Runnable {
+                        tvFlashcardQuestion.visibility = View.VISIBLE
+                        tvHideAnswer.visibility = View.INVISIBLE
+                        // second quarter turn
+                        tvFlashcardQuestion.rotationY = -90f
+                        tvFlashcardQuestion.animate()
                             .rotationY(0f)
                             .setDuration(200)
                             .start()
@@ -161,6 +187,13 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        if (isShowingAnswer) {
+            tvFlashcardQuestion.visibility = View.VISIBLE
+            tvHideAnswer.visibility = View.INVISIBLE
+            tvHideAnswer.rotationY = 90f
+            tvFlashcardQuestion.rotationY = 0f
+        }
+
         val leftOutAnim = AnimationUtils.loadAnimation(this, R.anim.left_out)
         val rightInAnim = AnimationUtils.loadAnimation(this, R.anim.right_in)
 
@@ -169,28 +202,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
+                setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
+                tvFlashcardQuestion.startAnimation(rightInAnim)
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
                 // we don't need to worry about this method
             }
         })
-        rightInAnim.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {
-            }
-
-            override fun onAnimationEnd(animation: Animation?) {
-            }
-
-            override fun onAnimationRepeat(animation: Animation?) {
-                // we don't need to worry about this method
-            }
-        })
-
-        setUpFlashcardViews(index = getRandomNumber(0, allFlashcards.size - 1))
 
         tvFlashcardQuestion.startAnimation(leftOutAnim)
-        tvFlashcardQuestion.startAnimation(rightInAnim)
     }
 
     private fun deleteCard(){
