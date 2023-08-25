@@ -6,7 +6,7 @@
 A simple App designed to help users create, manage and review a collection of questions and answers. It uses a local database to store and retrieve data.
 
 ### App Walk-though
-<img src="https://i.imgur.com/v3M0iOY.gif" width=200><br>
+<img src="https://i.imgur.com/yyL7S0r.gif" width=200><br>
 
 ## Required
 - [x] User sees a transition animation when going from the main screen to the add card screen.
