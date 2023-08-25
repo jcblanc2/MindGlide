@@ -194,6 +194,8 @@ class MainActivity : AppCompatActivity() {
             tvFlashcardQuestion.rotationY = 0f
         }
 
+        reset()
+
         val leftOutAnim = AnimationUtils.loadAnimation(this, R.anim.left_out)
         val rightInAnim = AnimationUtils.loadAnimation(this, R.anim.right_in)
 
@@ -340,5 +342,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun reset(){
+        tvWrongAnswer1.setBackgroundColor(resources.getColor(R.color.answer_background_color, null))
+        tvWrongAnswer2.setBackgroundColor(resources.getColor(R.color.answer_background_color, null))
+        tvFlashcardAnswer.setBackgroundColor(resources.getColor(R.color.answer_background_color, null))
     }
 }

@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:elevation="5dp"
         android:gravity="center"
         android:textColor="#ea769b"
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@id/timer"
@@ -39,20 +39,22 @@
         android:gravity="center"
         android:textColor="@color/text_color"
         android:background="@drawable/card_question_background"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tvHideAnswer"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="10dp"
-        android:textColor="@color/blue_gray"
+        android:layout_below="@id/timer"
         android:elevation="5dp"
         android:gravity="center"
-        android:textSize="40sp"
+        android:textColor="@color/blue_gray"
+        android:background="@drawable/answer_card_background"
+        android:textSize="35sp"
         android:visibility="invisible"/>
 
     <TextView
@@ -60,107 +62,112 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/tvFlashcardQuestion"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/answer_background_color"
-        android:gravity="center"
-        android:textColor="@color/text_color"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvWrongAnswer1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/tvFlashcardAnswer"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/answer_background_color"
-        android:gravity="center"
-        android:textColor="@color/text_color"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvWrongAnswer2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/tvWrongAnswer1"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/answer_background_color"
-        android:gravity="center"
-        android:textColor="@color/text_color"
-        android:textSize="30sp" />
-
-    <ImageView
-        android:id="@+id/ivNoCards"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        android:src="@drawable/emptycards1_icon_foreground"
-        android:contentDescription="@string/icon_no_cards"
-        android:visibility="gone"/>
-
-    <TextView
-        android:id="@+id/tvNoCards"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivNoCards"
-        android:layout_margin="5dp"
         android:elevation="5dp"
         android:gravity="center"
-        android:textColor="@color/blue_gray"
-        android:textSize="20sp"
-        android:text="@string/empty_state_text"
-        android:visibility="gone"/>
+        android:background="@color/answer_background_color"
+        android:textColor="@color/text_color"
+        android:textSize="25sp"/>
 
-    <ImageView
-        android:id="@+id/ivDeleteBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/tvWrongAnswer2"
-        android:contentDescription="@string/delete_button"
-        android:src="@drawable/trash_icon_foreground" />
+        <TextView
+            android:id="@+id/tvWrongAnswer1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/tvFlashcardAnswer"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:background="@color/answer_background_color"
+            android:textColor="@color/text_color"
+            android:textSize="25sp"/>
 
-    <ImageView
-        android:id="@+id/ivNextBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/tvWrongAnswer2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
-        android:contentDescription="@string/button_next"
-        android:src="@drawable/next_icon_foreground" />
+        <TextView
+            android:id="@+id/tvWrongAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/tvWrongAnswer1"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:background="@color/answer_background_color"
+            android:textColor="@color/text_color"
+            android:textSize="25sp" />
 
-    <ImageView
-        android:id="@+id/ivAddBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:contentDescription="@string/button_add"
-        android:src="@drawable/add_icon_foreground" />
+        <ImageView
+            android:id="@+id/ivNoCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:src="@drawable/emptycards1_icon_foreground"
+            android:contentDescription="@string/icon_no_cards"
+            android:visibility="gone"/>
 
-    <ImageView
-        android:id="@+id/ivEditBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:contentDescription="@string/edit_button"
-        android:src="@drawable/edit_icon_foreground" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tvNoCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivNoCards"
+            android:layout_margin="5dp"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:textColor="@color/blue_gray"
+            android:textSize="20sp"
+            android:text="@string/empty_state_text"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/ivDeleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tvWrongAnswer2"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/delete_button"
+            android:src="@drawable/trash_icon_foreground" />
+
+        <ImageView
+            android:id="@+id/ivNextBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvWrongAnswer2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/button_next"
+            android:src="@drawable/next_icon_foreground" />
+
+        <ImageView
+            android:id="@+id/ivAddBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/button_add"
+            android:src="@drawable/add_icon_foreground" />
+
+        <ImageView
+            android:id="@+id/ivEditBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/edit_button"
+            android:src="@drawable/edit_icon_foreground" />
+    </RelativeLayout>
